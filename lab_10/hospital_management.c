@@ -3,9 +3,24 @@
 
 int main()
 {
-    int choice; int id = 0; int age = 0; char first_name[30] = ""; char last_name[30] = ""; char full_name[70] = "";
-   char gender; char medical_D[30] = ""; int beds = 100;
-    int occupied_beds = 30;int critical_count = 0; int non_critical_count = 0; char critical_status[20];
+    int choice;
+    int id = 0;
+    int age = 0;
+
+    char first_name[30] = "";
+    char last_name[30] = "";
+    char full_name[70] = "";
+
+    char gender;
+    char medical_D[30] = "";
+
+    int beds = 100;
+    int occupied_beds = 30;
+
+    int critical_count = 0;
+    int non_critical_count = 0;
+
+    char critical_status[20];
 
     do
     {
@@ -13,6 +28,7 @@ int main()
         printf("=========================================================\n");
         printf("             HOSPITAL MANAGEMENT SYSTEM\n");
         printf("=========================================================\n");
+
         printf(" 1. Add Patient Record\n");
         printf(" 2. View Patient Details\n");
         printf(" 3. Analyze Patient Name\n");
@@ -24,14 +40,22 @@ int main()
         printf(" 9. Generate Patient Code\n");
         printf("10. Book Appointment\n");
         printf("11. Hospital Dashboard\n");
-        printf("12. Exit\n");
+        printf("12. Display Name Word by Word\n");
+        printf("13. Exit\n");
+
         printf("=========================================================\n");
         printf("Enter Choice : ");
         scanf("%d", &choice);
 
         getchar();
+
         switch(choice)
         {
+
+            /* =================================================
+               CASE 1 : ADD PATIENT
+               ================================================= */
+
             case 1:
             {
                 printf("\n");
@@ -45,10 +69,12 @@ int main()
 
                 printf("Enter First Name : ");
                 fgets(first_name, sizeof(first_name), stdin);
+
                 first_name[strcspn(first_name, "\n")] = 0;
 
                 printf("Enter Last Name : ");
                 fgets(last_name, sizeof(last_name), stdin);
+
                 last_name[strcspn(last_name, "\n")] = 0;
 
                 printf("Enter Age : ");
@@ -58,6 +84,7 @@ int main()
 
                 printf("Enter Department : ");
                 fgets(medical_D, sizeof(medical_D), stdin);
+
                 medical_D[strcspn(medical_D, "\n")] = 0;
 
                 printf("Enter Gender (M/F) : ");
@@ -68,10 +95,12 @@ int main()
                 printf("Critical or NonCritical : ");
                 scanf("%s", critical_status);
 
+                /* Create full name */
                 strcpy(full_name, first_name);
                 strcat(full_name, " ");
                 strcat(full_name, last_name);
 
+                /* Count critical / non-critical patients */
                 if(strcmp(critical_status, "Critical") == 0 ||
                    strcmp(critical_status, "critical") == 0)
                 {
@@ -82,6 +111,7 @@ int main()
                     non_critical_count++;
                 }
 
+                /* Increase occupied beds */
                 if(occupied_beds < beds)
                 {
                     occupied_beds++;
@@ -91,6 +121,11 @@ int main()
 
                 break;
             }
+
+
+            /* =================================================
+               CASE 2 : VIEW PATIENT DETAILS
+               ================================================= */
 
             case 2:
             {
@@ -108,6 +143,11 @@ int main()
                 break;
             }
 
+
+            /* =================================================
+               CASE 3 : ANALYZE PATIENT NAME
+               ================================================= */
+
             case 3:
             {
                 int vowels = 0;
@@ -120,17 +160,21 @@ int main()
                 {
                     char ch = full_name[i];
 
-                    if(ch=='A'||ch=='E'||ch=='I'||ch=='O'||ch=='U'||
-                       ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u')
+                    if(ch == 'A' || ch == 'E' || ch == 'I' ||
+                       ch == 'O' || ch == 'U' ||
+                       ch == 'a' || ch == 'e' || ch == 'i' ||
+                       ch == 'o' || ch == 'u')
                     {
                         vowels++;
                     }
-                    else if((ch>='A'&&ch<='Z') ||
-                            (ch>='a'&&ch<='z'))
+
+                    else if((ch >= 'A' && ch <= 'Z') ||
+                            (ch >= 'a' && ch <= 'z'))
                     {
                         consonants++;
                     }
-                    else if(ch==' ')
+
+                    else if(ch == ' ')
                     {
                         spaces++;
                     }
@@ -150,6 +194,11 @@ int main()
                 break;
             }
 
+
+            /* =================================================
+               CASE 4 : AGE CLASSIFICATION
+               ================================================= */
+
             case 4:
             {
                 printf("\n");
@@ -158,14 +207,25 @@ int main()
                 printf("========================================\n");
 
                 if(age < 18)
+                {
                     printf("Patient Category : CHILD\n");
+                }
                 else if(age < 60)
+                {
                     printf("Patient Category : ADULT\n");
+                }
                 else
+                {
                     printf("Patient Category : SENIOR CITIZEN\n");
+                }
 
                 break;
             }
+
+
+            /* =================================================
+               CASE 5 : COPY PATIENT NAME
+               ================================================= */
 
             case 5:
             {
@@ -178,25 +238,44 @@ int main()
                 break;
             }
 
+
+            /* =================================================
+               CASE 6 : COMPARE PATIENT NAMES
+               ================================================= */
+
             case 6:
             {
                 char name1[70];
                 char name2[70];
 
                 printf("Enter First Name : ");
+
                 getchar();
+
                 fgets(name1, sizeof(name1), stdin);
+                name1[strcspn(name1, "\n")] = 0;
 
                 printf("Enter Second Name : ");
+
                 fgets(name2, sizeof(name2), stdin);
+                name2[strcspn(name2, "\n")] = 0;
 
                 if(strcmp(name1, name2) == 0)
+                {
                     printf("Names are SAME\n");
+                }
                 else
+                {
                     printf("Names are DIFFERENT\n");
+                }
 
                 break;
             }
+
+
+            /* =================================================
+               CASE 7 : SEARCH CHARACTER
+               ================================================= */
 
             case 7:
             {
@@ -216,12 +295,21 @@ int main()
                 }
 
                 if(found)
+                {
                     printf("Character Found\n");
+                }
                 else
+                {
                     printf("Character Not Found\n");
+                }
 
                 break;
             }
+
+
+            /* =================================================
+               CASE 8 : SEARCH MEDICAL DEPARTMENT
+               ================================================= */
 
             case 8:
             {
@@ -240,12 +328,13 @@ int main()
                 getchar();
 
                 printf("Enter Department : ");
+
                 fgets(search_department,
                       sizeof(search_department),
                       stdin);
 
                 search_department[
-                    strcspn(search_department,"\n")
+                    strcspn(search_department, "\n")
                 ] = 0;
 
                 for(int i = 0; i < 5; i++)
@@ -259,12 +348,21 @@ int main()
                 }
 
                 if(found)
+                {
                     printf("Department Available\n");
+                }
                 else
+                {
                     printf("Department Not Found\n");
+                }
 
                 break;
             }
+
+
+            /* =================================================
+               CASE 9 : GENERATE PATIENT CODE
+               ================================================= */
 
             case 9:
             {
@@ -280,6 +378,11 @@ int main()
 
                 break;
             }
+
+
+            /* =================================================
+               CASE 10 : BOOK APPOINTMENT
+               ================================================= */
 
             case 10:
             {
@@ -299,6 +402,11 @@ int main()
                 break;
             }
 
+
+            /* =================================================
+               CASE 11 : HOSPITAL DASHBOARD
+               ================================================= */
+
             case 11:
             {
                 printf("\n");
@@ -307,8 +415,10 @@ int main()
                 printf("========================================\n");
 
                 printf("Total Beds         : %d\n", beds);
+
                 printf("Occupied Beds      : %d\n",
                        occupied_beds);
+
                 printf("Available Beds     : %d\n",
                        beds - occupied_beds);
 
@@ -316,34 +426,81 @@ int main()
 
                 printf("Critical Patients  : %d\n",
                        critical_count);
+
                 printf("Non-Critical       : %d\n",
                        non_critical_count);
 
                 printf("----------------------------------------\n");
 
                 printf("Occupancy Rate     : %.2f%%\n",
-                       ((float)occupied_beds /
-                        beds) * 100);
+                       ((float)occupied_beds / beds) * 100);
 
                 break;
             }
+
+
+            /* =================================================
+               CASE 12 : DISPLAY NAME WORD BY WORD
+               USING strtok()
+               ================================================= */
 
             case 12:
             {
+                char name_copy[70];
+                char *word;
+
+                /* Copy full name because strtok() modifies the string */
+                strcpy(name_copy, full_name);
+
+                /* Get first word */
+                word = strtok(name_copy, " ");
+
                 printf("\n");
                 printf("========================================\n");
-                printf(" Thank You For Using HMS\n");
+                printf("       PATIENT NAME WORDS\n");
                 printf("========================================\n");
+
+                /* Print each word */
+                while(word != NULL)
+                {
+                    printf("%s\n", word);
+
+                    /* Get next word */
+                    word = strtok(NULL, " ");
+                }
+
                 break;
             }
 
+
+            /* =================================================
+               CASE 13 : EXIT
+               ================================================= */
+
+            case 13:
+            {
+                printf("\n");
+                printf("========================================\n");
+                printf("     THANK YOU FOR USING HMS\n");
+                printf("========================================\n");
+
+                break;
+            }
+
+
+            /* =================================================
+               DEFAULT : INVALID CHOICE
+               ================================================= */
+
             default:
             {
-                printf("Invalid Choice!\n");
+                printf("\nInvalid Choice!\n");
+
+                break;
             }
         }
 
-    } while(choice != 12);
+    } while(choice != 13);
 
     return 0;
 }
