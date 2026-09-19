@@ -4,6 +4,7 @@ int main(){
     printf("Enter number of data to enter: ");
     int n;
     scanf("%d",&n);
+    getchar();
     char title[n][20];
     char author[n][20];
     char category[n][20];
