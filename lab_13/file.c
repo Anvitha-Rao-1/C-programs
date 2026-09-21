@@ -18,8 +18,8 @@ struct customer
 
 int main()
 {
-    FILE *fp;
-    struct customer c;
+    FILE *fp; //file pointer
+    struct customer c; //creates variable c of struct
     int ch;
     int due;
 
@@ -29,7 +29,7 @@ int main()
 
     printf("Enter Customer ID: ");
     scanf("%d",&c.id);
-    getchar();
+    getchar(); //swallow the xtra \n
 
     printf("Enter Customer Name: ");
     fgets(c.name,sizeof(c.name),stdin);
@@ -75,14 +75,14 @@ int main()
 
     c.total=c.bill+c.gst+c.fine;
 
-    fp=fopen("bill.txt","w");
+    fp=fopen("bill.txt","w"); //opening the file "w" if no file present it is created
 
-    if(fp==NULL)
+    if(fp==NULL) //if fpopen() fails to open then
     {
         printf("File cannot be opened.\n");
         return 0;
     }
-
+    //fprintf() works like printf(), except it writes to a file
     fprintf(fp,"====================================\n");
     fprintf(fp,"       ELECTRICITY BILL\n");
     fprintf(fp,"====================================\n");
@@ -98,9 +98,9 @@ int main()
     fprintf(fp,"Total Bill       : Rs. %.2f\n",c.total);
     fprintf(fp,"====================================\n");
 
-    fclose(fp);
+    fclose(fp); //it releases the file resources and ensures the data is properly saved
 
-    fp=fopen("bill.txt","r");
+    fp=fopen("bill.txt","r"); //opening the file again for reading "r"
 
     if(fp==NULL)
     {
@@ -110,12 +110,13 @@ int main()
 
     printf("\n\nFILE CONTENTS\n\n");
 
-    while((ch=fgetc(fp))!=EOF)
+    //fgetsc(fp) reads one charcter from the file
+    while((ch=fgetc(fp))!=EOF) //EOF is end of file
     {
-        putchar(ch);
+        putchar(ch); //putchar(ch) prints bill fprintf stuff
     }
 
-    fclose(fp);
+    fclose(fp); //file closed after reading
 
     return 0;
 }
