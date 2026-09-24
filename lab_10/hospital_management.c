@@ -22,7 +22,7 @@ int main()
 
     char critical_status[20];
 
-    do
+    do //comp critical, not critical, count occupied beds, search medical department, dashboard, appointment
     {
         printf("\n");
         printf("=========================================================\n");
@@ -38,8 +38,8 @@ int main()
         printf(" 7. Search Character in Name\n");
         printf(" 8. Search Medical Department\n");
         printf(" 9. Generate Patient Code\n");
-        printf("10. Book Appointment\n");
-        printf("11. Hospital Dashboard\n");
+        printf("10. Book Appointment\n"); //comp
+        printf("11. Hospital Dashboard\n"); //comp
         printf("12. Display Name Word by Word\n");
         printf("13. Exit\n");
 

@@ -11,8 +11,8 @@ struct customer
     int units;
     float bill;
     float change;
-    float gst;
-    float fine;
+    float gst; //complexity
+    float fine; //complexity
     float total;
 };
 
@@ -58,14 +58,14 @@ int main()
     else
         c.bill=100*1.5+100*2.5+300*4+(c.units-500)*6;
 
-    printf("\nEnter percentage increase/decrease: ");
+    printf("\nEnter percentage increase/decrease: "); //complexity
     scanf("%f",&c.change);
 
     c.bill=c.bill+(c.bill*c.change/100);
 
     c.gst=c.bill*18/100;
 
-    printf("Is the due date over? (1=Yes, 0=No): ");
+    printf("Is the due date over? (1=Yes, 0=No): "); //complexity
     scanf("%d",&due);
 
     if(due==1)

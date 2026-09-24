@@ -3,7 +3,7 @@
 float area_rectangle=0, area_square= 0, area_triangle=0;
 float length, breadth, side, base, height;
 
-void squareArea(float s) {
+void squareArea(float s) { //comp: check negative values
     area_square=s * s; 
 }
 

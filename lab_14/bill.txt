@@ -1,0 +1,14 @@
+====================================
+       ELECTRICITY BILL
+====================================
+Customer ID      : 456
+Customer Name    : a
+Previous Reading : 50
+Current Reading  : 60
+Units Consumed   : 10
+Bill             : Rs. 15.30
+GST (18%)        : Rs. 2.75
+Late Fine        : Rs. 0.00
+------------------------------------
+Total Bill       : Rs. 18.05
+====================================

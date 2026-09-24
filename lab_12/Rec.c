@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-int ans=1;
+int ans=1; //complexity: sum of factorials
 //Method 1uses recursion, pinters, a variable value
 //no return type with parameters
 void calculate1(int num,int *ans) //* indicates pointers(store address rather than values)
