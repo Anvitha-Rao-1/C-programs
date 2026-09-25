@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<math.h>
+
 int check_prime(int num){
     int copy=num; int count=0;
     for(int i=1;i<=num;i++){

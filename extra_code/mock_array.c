@@ -1,127 +1,59 @@
-#include<stdio.h>
+#include <stdio.h>
 
-int even_odd(int num){
-    if(num%2==0){
-        return 1;
-    }
-    return 0;
-}
-void largest_smallest(int m, int n, int arr[m][n]){
+int main() {
+    int r1, c1, r2, c2;
     
-    int largest=arr[0][0];
-    int smallest=arr[0][0];
-
-    for(int i=1;i<m;i++){
-         for(int j=1;j<n;j++){
-            if(arr[i][j]>largest){
-                largest=arr[i][j];
-            }
-         }
-    }
-
-    for(int i=1;i<m;i++){
-         for(int j=1;j<n;j++){
-            if(arr[i][j]<smallest){
-                smallest=arr[i][j];
-            }
-         }
-    }
-
-    printf("\n Largest number is: %d", largest);
-    printf("\nSmallest Number is: %d",smallest);
-}
-
-void count(int m, int n, int arr[m][n]){
-int c_zero=0,c_pos=0,c_neg=0;
-
-
-  for(int i=0;i<m;i++){
-       for(int j=0;j<n;j++){
-          if(arr[i][j]==0){
-            c_zero++;
-          }else if(arr[i][j]>0){
-            c_pos++;
-          }else{
-             c_neg++;
-          }
-      }
-  }
-
-  printf("\n number of positive numbers are %d:", c_pos);
-  printf("\n number of negative numbers are %d:", c_neg);
-  printf("\n number of zero numbers are %d:", c_zero);
-}
-
-int count_element(int m, int n, int arr[m][n]){
-
- int s; int count_ele=0;
-
- printf("\nWhich number do you want to search? :");
- scanf("%d", &s);
-
- for(int i=0;i<m;i++){
-    for(int j=0;j<n;j++){
-        if(arr[i][j] == s){
-            count_ele++;
-        }
-    }
- }
-
- return count_ele;
-}
-
-int main(){
-    int m,n;
-   
-    printf("\nEnter m value: ");
-    scanf("%d", &m);
-    printf("\nEnter n value");
-    scanf("%d", &n);
+    printf("Enter rows and columns for the first matrix: ");
+    scanf("%d %d", &r1, &c1);
     
-    int arr[m][n];
-    printf("\nEnter elements for the array");
-    for(int i=0;i<m;i++){
-        for(int j=0;j<n;j++){
-            scanf("%d", &arr[i][j]);
+    printf("Enter rows and columns for the second matrix: ");
+    scanf("%d %d", &r2, &c2);
+    
+    // Condition for multiplication
+    if (c1 != r2) {
+        printf("Error! Column of first matrix not equal to row of second.\n");
+        return 0;
+    }
+    
+    int first[10][10], second[10][10], result[10][10];
+    
+    printf("Enter elements of matrix 1:\n");
+    for (int i = 0; i < r1; ++i) {
+        for (int j = 0; j < c1; ++j) {
+            scanf("%d", &first[i][j]);
         }
     }
-
-/* Check even or odd */
-
-    printf("\n\nEven/Odd result:");
-
-    for(int i = 0; i < m; i++)
-    {
-        for(int j = 0; j < n; j++)
-        {
-            if(even_odd(arr[i][j]) == 1)
-            {
-                printf("\n%d is Even", arr[i][j]);
-            }
-            else
-            {
-                printf("\n%d is Odd", arr[i][j]);
+    
+    printf("Enter elements of matrix 2:\n");
+    for (int i = 0; i < r2; ++i) {
+        for (int j = 0; j < c2; ++j) {
+            scanf("%d", &second[i][j]);
+        }
+    }
+    
+    // Initializing result matrix to 0
+    for (int i = 0; i < r1; ++i) {
+        for (int j = 0; j < c2; ++j) {
+            result[i][j] = 0; //imprt
+        }
+    }
+    
+    // Multiplying matrices
+    for (int i = 0; i < r1; ++i) { 
+        for (int j = 0; j < c2; ++j) {
+            for (int k = 0; k < c1; ++k) { //c1=c2
+                result[i][j] += first[i][k] * second[k][j];
             }
         }
     }
-
-
-    /* Find largest and smallest */
-
-    largest_smallest(m, n, arr);
-
-
-    /* Count positive, negative and zero */
-
-    count(m,n,arr);
-
-
-    /* Search element */
-
-    int result = count_element(m,n,arr);
-
-    printf("\nThe number occurs %d times.", result);
-
-
+    
+    printf("Resultant Matrix:\n");
+    for (int i = 0; i < r1; ++i) {
+        for (int j = 0; j < c2; ++j) {
+            printf("%d ", result[i][j]);
+        }
+        printf("\n");
+    }
+    
     return 0;
 }

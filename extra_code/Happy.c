@@ -7,7 +7,7 @@ int check(int n){
         sum=0;
         while(n>0){
             int r=n%10;
-            sum+=r*r;
+            sum+=r*r; //sum of sq of digits
             n/=10;
         }
         n=sum;

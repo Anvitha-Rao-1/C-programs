@@ -32,7 +32,8 @@ int main(){
 
         int digits=countDigits(original);
         long long split=1;
-        for(int j=0;j<digits;j++) split*=10;
+        for(int j=0;j<digits;j++) 
+        split*=10;
 
         long long right=sq%split;
         long long left=sq/split;
